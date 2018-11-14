@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <button className="btn grey">CLick Me</button>
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <button className="btn grey">CLick Me</button>
+        </div>
+      </BrowserRouter>
     );
   }
 }
