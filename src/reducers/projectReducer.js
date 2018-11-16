@@ -9,9 +9,12 @@ const initState = {
 const projectReducer = (state = initState, action) => {
   switch (action.type) {
     case 'CREATE_PROJECT': {
-      console.log('created', action.project);
-      const id = Math.random();
-      return { ...state, project: { ...action.project, id } }
+      console.log(action)
+      return state;
+    }
+    case 'CREATE_PROJECT_ERROR': {
+      console.log('create projet error', action.err)
+      return state;
     }
     default: {
       return state;
