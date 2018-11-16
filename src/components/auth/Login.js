@@ -16,7 +16,6 @@ class Login extends Component {
     return (
       <div className='container'>
         <form onSubmit={this.handleSubmit} className='white'>
-          {/* <h5 className="grey text text-darken-3">Sign In</h5> */}
           <h5>Login</h5>
           <div className="input-field">
             <label htmlFor="email">Email</label>
