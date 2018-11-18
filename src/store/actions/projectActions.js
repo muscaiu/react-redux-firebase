@@ -1,4 +1,5 @@
 export const createProject = (project) => {
+  console.log('project', project);
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     //pausing the dispatch
     const firestore = getFirestore();
