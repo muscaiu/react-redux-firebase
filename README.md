@@ -1,7 +1,6 @@
 ## created with create-react-app
 
 ## fb rules:
-
 ```
 service cloud.firestore {
 	match /databases/{database}/documents {
@@ -18,7 +17,6 @@ service cloud.firestore {
 ```
 
 ## for firebase cloud functions
-
 * npm i -g firebase-tools
 * firebase login (will show a browser window for login)
 * firebase init
@@ -26,3 +24,11 @@ service cloud.firestore {
 	- select the db project
 	- for public directory type 'dist'
 * firebase deploy
+
+## to deploy a function only
+* firebase deploy --only functions
+
+## output:
+* +  Deploy complete!
+* to test cloud function go to https://us-central1-react-redux-firebase-6fe44.cloudfunctions.net/helloWorld
+* also check the functions tab in firebase console
