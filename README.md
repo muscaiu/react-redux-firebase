@@ -1,9 +1,8 @@
-* created with create-react-app
+## created with create-react-app
 
 ## fb rules:
 
-```json
-
+```
 service cloud.firestore {
 	match /databases/{database}/documents {
 		match /projects/{project}{
@@ -16,3 +15,14 @@ service cloud.firestore {
 		}
 	}
 }
+```
+
+## for firebase cloud functions
+
+* npm i -g firebase-tools
+* firebase login (will show a browser window for login)
+* firebase init
+	- select functions anf hosting
+	- select the db project
+	- for public directory type 'dist'
+* firebase deploy
