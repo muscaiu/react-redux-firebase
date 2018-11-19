@@ -18,14 +18,18 @@ const store = createStore(rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
     reduxFirestore(fbConfig),
-    reactReduxFirebase(fbConfig),
+    reactReduxFirebase(fbConfig, { attachAuthIsReady: true }),
   )
 )
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-  , document.getElementById('root'));
+//wait for firebase auth and then render the app to not have navbar links flicker
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+    , document.getElementById('root'));
 
-serviceWorker.unregister();
+  serviceWorker.unregister();
+})
+
