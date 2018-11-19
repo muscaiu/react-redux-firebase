@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import { register } from '../../store/actions/authActions';
+
 class Register extends Component {
   state = {
     email: '',
@@ -14,10 +16,10 @@ class Register extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
+    this.props.register(this.state);
   }
   render() {
-    const { auth } = this.props;
+    const { auth, authError } = this.props;
     if (auth.uid) return <Redirect to={'/'} />
 
     return (
@@ -43,6 +45,9 @@ class Register extends Component {
           <div className="input-field">
             <button className="btn pink lighten-1 z-depth-0">Register</button>
           </div>
+          <div className="red-text center" >
+            {authError ? <p>{authError}</p> : null}
+          </div>
         </form>
       </div>
     )
@@ -51,8 +56,15 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    authError: state.auth.authError
   }
 }
 
-export default connect(mapStateToProps)(Register);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    register: newUser => dispatch(register(newUser))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

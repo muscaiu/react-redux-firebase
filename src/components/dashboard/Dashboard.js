@@ -10,7 +10,7 @@ import ProjectList from '../projects/ProjectList';
 class Dashboard extends Component {
   render() {
     const { projects, auth } = this.props;
-    if (!auth.uid) return <Redirect to={'/signin'} />
+    if (!auth.uid) return <Redirect to={'/login'} />
     return (
       <div className='dashboard container'>
         <div className="row">
