@@ -32,3 +32,10 @@ service cloud.firestore {
 * +  Deploy complete!
 * to test cloud function go to https://us-central1-react-redux-firebase-6fe44.cloudfunctions.net/helloWorld
 * also check the functions tab in firebase console
+
+## updated rules for notifications
+```
+match /notifications/{notification}{
+	allow read: if request.auth.uid != null
+}
+```

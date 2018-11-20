@@ -12,7 +12,6 @@ import Header from "../reusable/Header";
 const Navbar = (props) => {
   const { auth, profile, classes } = props;
   const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
-  console.log(props);
 
   return (
     <Header
