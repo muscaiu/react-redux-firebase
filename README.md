@@ -39,3 +39,7 @@ match /notifications/{notification}{
 	allow read: if request.auth.uid != null
 }
 ```
+
+## to Delpoy to fb
+* npm run build -> will output the app in the build folder (for this app just move all from build to dist)
+* firebase deploy
