@@ -7,8 +7,9 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-import fbConfig from './config/fbConfig';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+import fbConfig from './config/fbConfig';
 import App from './App';
 import './index.css'
 import rootReducer from './reducers/rootReducer';
@@ -28,13 +29,21 @@ const store = createStore(rootReducer,
       }),
   )
 )
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+    suppressDeprecationWarnings: true
+  }
+});
 
 //wait for firebase auth and then render the app to not have navbar links flicker
 store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <MuiThemeProvider theme={theme}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </MuiThemeProvider>
     , document.getElementById('root'));
 
   serviceWorker.unregister();

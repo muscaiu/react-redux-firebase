@@ -1,16 +1,12 @@
 import React from 'react'
-import { compose } from 'redux';
 import { connect } from 'react-redux';
-
-import withStyles from "@material-ui/core/styles/withStyles";
-import navbarsStyle from '../reusable/styles/navbarsStyle';
 
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import Header from "../reusable/Header";
 
 const Navbar = (props) => {
-  const { auth, profile, classes } = props;
+  const { auth, profile } = props;
   const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
 
   return (
@@ -36,7 +32,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(
-  withStyles(navbarsStyle),
-  connect(mapStateToProps)
-)(Navbar);
+export default connect(mapStateToProps)(Navbar);
