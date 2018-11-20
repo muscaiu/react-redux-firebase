@@ -6,17 +6,17 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 import Email from "@material-ui/icons/Email";
+import { Link } from 'react-router-dom';
 
 import { login } from '../../store/actions/authActions';
 import GridContainer from '../../components/reusable/GridContainer';
 import GridItem from '../../components/reusable/GridItem';
 import Card from '../../components/reusable/Card';
-import CardHeader from '../../components/reusable/CardHeader';
 import Button from '../../components/reusable/Button';
 import CardBody from '../../components/reusable/CardBody';
 import CustomInput from '../../components/reusable/CustomInput';
 import CardFooter from '../../components/reusable/CardFooter';
-
+import AuthHeader from './AuthHeader';
 import loginPageStyle from '../reusable/loginPageStyle';
 import image from '../../assets/bg7.jpg'
 
@@ -27,7 +27,6 @@ class Login extends Component {
     cardAnimaton: "cardHidden"
   }
   componentDidMount() {
-    // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
       function () {
         this.setState({ cardAnimaton: "" });
@@ -57,42 +56,11 @@ class Login extends Component {
       >
         <div className={classes.container}>
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={4}>
+            <GridItem xs={10} sm={10} md={4}>
               <Card className={classes[this.state.cardAnimaton]}>
                 <form onSubmit={this.handleSubmit} className={classes.form}>
-                  <CardHeader color="primary" className={classes.cardHeader}>
-                    <h4>Login</h4>
-                    <div className={classes.socialLine}>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-google-plus-g"} />
-                      </Button>
-                    </div>
-                  </CardHeader>
-                  <p className={classes.divider}>Or Be Classical</p>
+                  <AuthHeader classes={classes} type='Login' />
+                  
                   <CardBody>
                     <CustomInput
                       labelText="Email..."
@@ -134,6 +102,7 @@ class Login extends Component {
                       Login
                     </Button>
                   </CardFooter>
+                  <Link to='/register'><p className={classes.divider}>go to Register page</p></Link>
                   <div className="red-text center">
                     {authError ? <p>{authError}</p> : null}
                   </div>
