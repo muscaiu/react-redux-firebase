@@ -1,21 +1,32 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+
+import withStyles from "@material-ui/core/styles/withStyles";
+import navbarsStyle from '../reusable/styles/navbarsStyle';
 
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
+import Header from "../reusable/Header";
 
 const Navbar = (props) => {
-  const { auth, profile } = props;
+  const { auth, profile, classes } = props;
   const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
+  console.log(props);
 
   return (
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <Link to='/' className='brand-logo' >Home</Link>
-        {links}
-      </div>
-    </nav>
+    <Header
+      brand="Navbar with notifications"
+      color="dark"
+      rightLinks={
+        links
+      }
+    />
+
+    // <nav className="nav-wrapper grey darken-3">
+    //   <Link to='/' className='brand-logo' >Home</Link>
+    //   {links}
+    // </nav>
   )
 }
 
@@ -26,4 +37,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default compose(
+  withStyles(navbarsStyle),
+  connect(mapStateToProps)
+)(Navbar);
