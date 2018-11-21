@@ -1,9 +1,12 @@
 import React from 'react'
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import withStyles from "@material-ui/core/styles/withStyles";
 
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import Header from "../reusable/Header";
+import parallaxStyle from '../reusable/styles/parallaxStyle';
 
 const Navbar = (props) => {
   const { auth, profile } = props;
@@ -17,11 +20,20 @@ const Navbar = (props) => {
         links
       }
     />
+    // <Fragment>
+    //   <Header
+    //     brand="Home"
+    //     rightLinks={links}
+    //     fixed
+    //     color="transparent"
+    //     changeColorOnScroll={{
+    //       height: 400,
+    //       color: "white"
+    //     }}
+    //   />
+    //   <Parallax image={require("../../assets/bg4.jpg")} />
+    // </Fragment>
 
-    // <nav className="nav-wrapper grey darken-3">
-    //   <Link to='/' className='brand-logo' >Home</Link>
-    //   {links}
-    // </nav>
   )
 }
 
@@ -32,4 +44,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default compose(
+  withStyles(parallaxStyle),
+  connect(mapStateToProps)
+)(Navbar)

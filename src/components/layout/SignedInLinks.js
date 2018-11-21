@@ -12,14 +12,20 @@ import { logout } from '../../store/actions/authActions';
 import profileImage from '../../assets/avatar.jpg'
 
 const SignedInLinks = (props) => {
-  const { classes } = props;
+  const { classes, profile } = props;
   return (
-    // <ul className='right'>
-    //   <li><NavLink to='/create-project' >New Project</NavLink></li>
-    //   <li><NavLink onClick={props.logout} to='/' >Log Out</NavLink></li>
-    //   <li><NavLink to='/' className='btn btn-floating pink lighten-1'>{props.profile.initials}</NavLink></li>
-    // </ul>
     <List className={classes.list}>
+      {profile.role === 'admin' &&
+        < ListItem className={classes.listItem}>
+          <NavLink
+            to='/admin/dashboard'
+            className={classes.navLink}
+            color="transparent"
+          >
+            Admin
+          </NavLink>
+        </ListItem>
+      }
       <ListItem className={classes.listItem}>
         <NavLink
           to='/create-project'
@@ -39,7 +45,7 @@ const SignedInLinks = (props) => {
           Logout
           </NavLink>
       </ListItem>
-      {/* <ListItem className={classes.listItem}>
+      <ListItem className={classes.listItem}>
         <NavLink
           // justIcon
           // round
@@ -49,17 +55,16 @@ const SignedInLinks = (props) => {
           onClick={e => e.preventDefault()}
           color="rose"
         >
-          <Email className={classes.icons} />
           {props.profile.initials}
         </NavLink>
-      </ListItem> */}
+      </ListItem>
       <ListItem className={classes.listItem}>
         <CustomDropdown
           left
           caret={false}
           hoverColor="black"
           // dropdownHeader="Dropdown Header"
-          buttonText={            
+          buttonText={
             <img src={profileImage} className={classes.img} alt="profile" />
           }
           buttonProps={{
@@ -70,8 +75,14 @@ const SignedInLinks = (props) => {
           dropdownList={["Profile", "Settings", "Sign out"]}
         />
       </ListItem>
-    </List>
+    </List >
   )
+}
+
+const mapStateToProps = (state) => {
+  return {
+    profile: state.firebase.profile
+  }
 }
 
 const mapDipatchToProps = (dispatch) => {
@@ -82,5 +93,5 @@ const mapDipatchToProps = (dispatch) => {
 
 export default compose(
   withStyles(navbarsStyle),
-  connect(null, mapDipatchToProps)
+  connect(mapStateToProps, mapDipatchToProps)
 )(SignedInLinks);
