@@ -13,10 +13,12 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
+import Button from '../reusable/Button';
 import { mainListItems, secondaryListItems } from './listItems';
 import adminStyles from './styles/adminStyles';
 import ProjectList from '../projects/ProjectList';
-import Notifications from '../dashboard/Notifications';
+import GridContainer from '../reusable/GridContainer';
+import GridItem from '../reusable/GridItem';
 
 class AdminDashboard extends React.Component {
   state = {
@@ -32,7 +34,7 @@ class AdminDashboard extends React.Component {
   };
 
   renderDashBoard = () => {
-    const { classes, projects, notifications } = this.props;
+    const { classes, projects } = this.props;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -50,22 +52,28 @@ class AdminDashboard extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Typography variant="h4" gutterBottom component="h2">
-            Dashboard
-          </Typography>
+          <GridContainer>
+            <GridItem>
+              <Typography variant="h4" gutterBottom component="h2">
+                Dashboard
+               </Typography>
+              <Button justIcon round color="primary">+</Button>
+            </GridItem>
 
-          <ProjectList projects={projects} />
-          {/* <div className='dashboard container'>
-            <div className="row">
-              <div className="col s12 m6">
+            <ProjectList projects={projects} />
+            {/* <div className='dashboard container'>
+              <div className="row">
+                <div className="col s12 m6">
+                </div>
+                <div className="col s12 m5 offset-m1">
+                  <Notifications notifications={notifications} />
+                </div>
               </div>
-              <div className="col s12 m5 offset-m1">
-                <Notifications notifications={notifications} />
-              </div>
-            </div>
-          </div> */}
+            </div> */}
+          </GridContainer>
         </main>
-      </div>
+
+      </div >
     );
   }
 

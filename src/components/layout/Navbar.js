@@ -3,6 +3,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import withStyles from "@material-ui/core/styles/withStyles";
 
+// import Parallax from "../reusable/Parallax";
+
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import Header from "../reusable/Header";
@@ -14,8 +16,9 @@ const Navbar = (props) => {
 
   return (
     <Header
+      // fixed
       brand="Home"
-      color="dark"
+      color="primary"
       rightLinks={
         links
       }
@@ -28,10 +31,10 @@ const Navbar = (props) => {
     //     color="transparent"
     //     changeColorOnScroll={{
     //       height: 400,
-    //       color: "white"
+    //       color: "info"
     //     }}
     //   />
-    //   <Parallax image={require("../../assets/bg4.jpg")} />
+    //   <Parallax image={require("../../assets/bg7.jpg")} />
     // </Fragment>
 
   )

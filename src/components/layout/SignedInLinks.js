@@ -35,17 +35,7 @@ const SignedInLinks = (props) => {
           New Project
           </NavLink>
       </ListItem>
-      <ListItem className={classes.listItem}>
-        <NavLink
-          to='/'
-          className={classes.navLink}
-          onClick={props.logout}
-          color="transparent"
-        >
-          Logout
-          </NavLink>
-      </ListItem>
-      <ListItem className={classes.listItem}>
+      {/* <ListItem className={classes.listItem}>
         <NavLink
           // justIcon
           // round
@@ -57,9 +47,10 @@ const SignedInLinks = (props) => {
         >
           {props.profile.initials}
         </NavLink>
-      </ListItem>
+      </ListItem> */}
       <ListItem className={classes.listItem}>
         <CustomDropdown
+          logout={props.logout}
           left
           caret={false}
           hoverColor="black"

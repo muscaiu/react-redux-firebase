@@ -21,20 +21,27 @@ import Button from "./Button";
 import customDropdownStyle from "./styles/customDropdownStyle";
 
 class CustomDropdown extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false
-    };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+  state = {
+    open: false
   }
-  handleClick() {
+
+  handleClick = () => {
     this.setState(state => ({ open: !state.open }));
   }
-  handleClose(param) {
+  handleMenuItemClick = (option) => {
+    console.log(option);
+    switch (option) {
+      case 'Sign out':
+        return this.props.logout();
+      case 'Profile':
+        // return this.props.history.push('/profile')
+      default:
+        return null;
+    }
+  }
+  handleClose = (param) => {
     this.setState({ open: false });
-    if(this.props && this.props.onClick){
+    if (this.props && this.props.onClick) {
       this.props.onClick(param);
     }
   }
@@ -53,7 +60,6 @@ class CustomDropdown extends React.Component {
       dropdownList,
       buttonProps,
       dropup,
-      dropdownHeader,
       caret,
       hoverColor,
       left,
@@ -131,14 +137,6 @@ class CustomDropdown extends React.Component {
               <Paper className={classes.dropdown}>
                 <ClickAwayListener onClickAway={this.handleCloseAway}>
                   <MenuList role="menu" className={classes.menuList}>
-                    {dropdownHeader !== undefined ? (
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownHeader}
-                      >
-                        {dropdownHeader}
-                      </MenuItem>
-                    ) : null}
                     {dropdownList.map((prop, key) => {
                       if (prop.divider) {
                         return (
@@ -152,7 +150,7 @@ class CustomDropdown extends React.Component {
                       return (
                         <MenuItem
                           key={key}
-                          onClick={this.handleClose}
+                          onClick={() => this.handleMenuItemClick(prop)}
                           className={dropdownItem}
                         >
                           {prop}

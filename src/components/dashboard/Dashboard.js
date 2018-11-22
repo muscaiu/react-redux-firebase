@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 
-import Notifications from './Notifications';
+// import Notifications from './Notifications';
 import ProjectList from '../projects/ProjectList';
 
 class Dashboard extends Component {
   render() {
-    const { projects, notifications } = this.props;
+    const { projects } = this.props;
     return (
       // <GuttersGrid />
       // <div className='dashboard container'>
