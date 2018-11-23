@@ -26,7 +26,7 @@ const SignedInLinks = (props) => {
           </NavLink>
         </ListItem>
       }
-      <ListItem className={classes.listItem}>
+      {/*<ListItem className={classes.listItem}>
         <NavLink
           to='/create-project'
           className={classes.navLink}
@@ -35,7 +35,7 @@ const SignedInLinks = (props) => {
           New Project
           </NavLink>
       </ListItem>
-      {/* <ListItem className={classes.listItem}>
+       <ListItem className={classes.listItem}>
         <NavLink
           // justIcon
           // round

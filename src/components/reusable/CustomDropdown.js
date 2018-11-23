@@ -34,7 +34,8 @@ class CustomDropdown extends React.Component {
       case 'Sign out':
         return this.props.logout();
       case 'Profile':
-        // return this.props.history.push('/profile')
+        return null;
+      // return this.props.history.push('/profile')
       default:
         return null;
     }

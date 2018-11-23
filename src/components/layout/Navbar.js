@@ -16,7 +16,7 @@ const Navbar = (props) => {
 
   return (
     <Header
-      // fixed
+      fixed
       brand="Home"
       color="primary"
       rightLinks={

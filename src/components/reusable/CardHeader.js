@@ -37,6 +37,7 @@ import {
   };
 
 function CardHeader({ ...props }) {
+  console.log('props', props);
   const { classes, className, children, color, plain, ...rest } = props;
   const cardHeaderClasses = classNames({
     [classes.cardHeader]: true,
