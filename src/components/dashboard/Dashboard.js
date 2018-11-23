@@ -8,13 +8,13 @@ import ProjectList from '../projects/ProjectList';
 
 class Dashboard extends Component {
   render() {
-    const { projects } = this.props;
+    const { projects, location } = this.props;
     return (
       // <GuttersGrid />
       // <div className='dashboard container'>
       //   <div className="row">
       //     <div className="col s12 m6">
-      <ProjectList projects={projects} />
+      <ProjectList projects={projects} location={location.pathname} />
 
       //     </div>
       //     <div className="col s12 m5 offset-m1">

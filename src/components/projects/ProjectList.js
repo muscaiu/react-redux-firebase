@@ -14,14 +14,14 @@ import { withStyles } from '@material-ui/core/styles';
 
 import dashBoardStyles from '../dashboard/styles/dashBoardStyles';
 
-const ProjectList = ({ classes, projects }) => (
+const ProjectList = ({ classes, projects, location }) => (
   <div className={classNames(classes.layout, classes.cardGrid)}>
     <Grid container spacing={40}>
       {projects && projects.map(project =>
         <Grid item key={project.id} sm={6} md={4} lg={3}>
           <div className='project-list section'>
             <div key={project.id} >
-              <ProjectCard project={project} />
+              <ProjectCard project={project} location={location} />
             </div>
           </div>
         </Grid>

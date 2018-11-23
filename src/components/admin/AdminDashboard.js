@@ -19,10 +19,10 @@ import SidebarDrawer from './SidebarDrawer';
 
 class AdminDashboard extends React.Component {
   renderDashBoard = () => {
-    const { classes, projects } = this.props;
+    const { classes, projects, location } = this.props;
     return (
       <div className={classes.root}>
-        <SidebarDrawer classes={classes}/>
+        <SidebarDrawer classes={classes} />
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <GridContainer>
@@ -39,7 +39,7 @@ class AdminDashboard extends React.Component {
               </NavLink>
             </GridItem>
 
-            <ProjectList projects={projects} />
+            <ProjectList projects={projects} location={location.pathname} />
             {/* <div className='dashboard container'>
               <div className="row">
                 <div className="col s12 m6">

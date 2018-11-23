@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import classnames from 'classnames';
 
@@ -67,25 +69,24 @@ class ProjectCard extends React.Component {
   }
 
   render() {
-    const { classes, project } = this.props;
+    const { classes, project, profile, location } = this.props;
     const date = moment(project.createdAt.toDate()).calendar();
     const image = require('../../assets/contemplative-reptile.jpg')
+
     return (
       <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              {project.authorInitials}
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={project.title}
-          subheader={date}
-        />
+        {(profile.role === 'admin' && location.includes('admin')) &&
+          <CardHeader
+            avatar={
+              <Avatar aria-label="Recipe" className={classes.avatar}>
+                {project.authorInitials}
+              </Avatar>
+            }
+            action={<IconButton><MoreVertIcon /></IconButton>}
+            title={project.title}
+            subheader={date}
+          />
+        }
         <CardMedia
           className={classes.media}
           image={image}
@@ -128,4 +129,15 @@ ProjectCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ProjectCard);
+const mapStateToProps = (state) => {
+  return {
+    profile: state.firebase.profile
+  }
+}
+
+// export default withStyles(styles)(ProjectCard);
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps)
+)(ProjectCard);
